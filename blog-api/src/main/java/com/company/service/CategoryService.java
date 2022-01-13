@@ -1,0 +1,18 @@
+package com.company.service;
+
+import com.company.vo.CategoryVo;
+
+import java.util.List;
+
+/**
+ * @author zytwl
+ */
+public interface CategoryService {
+    /**
+     * 通过分类ID查找
+     * @param categoryId
+     * @return
+     * @author wanglin
+     */
+    CategoryVo findCategoryById(Long categoryId);
+}

@@ -16,11 +16,12 @@ public interface TagService {
      * @author wanglin
      */
     List<TagVo> findTagsByArticleId(Long articleId);
+
     /**
      * 热门标签
      * @param limit
      * @return
      * @author wanglin
      */
-//    Result hot(int limit);
+    Result hot(int limit);
 }

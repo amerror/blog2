@@ -10,7 +10,7 @@
         <module name="blog-api" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="11" />
+    <bytecodeTargetLevel target="8" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

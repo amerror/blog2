@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("tags")
 public class TagController {
-//    @Autowired
-//    private TagService tagService;
-//
-//    @GetMapping("hot")
-//    public Result hot(){
-//        int limit = 6;
-//        return tagService.hot(limit);
-//    }
+    @Autowired
+    private TagService tagService;
+
+    @GetMapping("hot")
+    public Result hot(){
+        int limit = 6;
+        return tagService.hot(limit);
+    }
 
 }

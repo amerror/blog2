@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dao.mapper.TagMapper">
+
+    <select id="findTagsByArticleId" parameterType="long" resultType="com.company.dao.pojo.Tag">
+<!--
+    ms_tag是标签表，avater是静态文件路径，tag_name是标签名称
+    ms_article_tag是文章对应的标签id的表，tag_id是标签id，article_id是文章id
+    所以括号里面的是获取该文章在ms_article_tag表所有对应的tag_id，然后再从ms_tag表中获取标签所对应的详细信息
+-->
+        select id,avatar,tag_name as tagName from ms_tag
+        where id in
+        (select tag_id from ms_article_tag where article_id=#{articleId})
+    </select>
+
+    <select id="findHotsTagIds" parameterType="int" resultType="java.lang.Long">
+        select tag_id from ms_article_tag group by tag_id order by count(*) desc limit #{limit}
+    </select>
+    <!--
+    parameterType是传进来的参数类型，如果是List类型就是List，而不是List中对象的类型。
+    select查询时，用的是字段名的tag_name，但是类的属性名是tagName，所以要用as转换成类的属性名的样子
+    where id in ()，括号里面不能为null，所以需要在impl做好判断，然后在这里进行foreach循环
+    Collection是集合名字，对应的是传进来的参数名，item是循环的对象，可以自己取，但是要与标签中的名字对应
+    separator是分隔符，open和close就是对应的最左和最右
+    -->
+    <select id="findTagsByTagIds" parameterType="List" resultType="com.company.dao.pojo.Tag">
+        select id,tag_name as tagName from ms_tag
+        where id in
+        <foreach collection="tagsIds" item="tagId" separator="," open="(" close=")">
+            #{tagId}
+        </foreach>
+    </select>
+
+</mapper>
