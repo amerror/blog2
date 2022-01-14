@@ -7,10 +7,7 @@ import com.company.dao.mapper.ArticleBodyMapper;
 import com.company.dao.mapper.ArticleMapper;
 import com.company.dao.pojo.Article;
 import com.company.dao.pojo.ArticleBody;
-import com.company.service.ArticleService;
-import com.company.service.CategoryService;
-import com.company.service.SysUserService;
-import com.company.service.TagService;
+import com.company.service.*;
 import com.company.vo.ArticleBodyVo;
 import com.company.vo.ArticleVo;
 import com.company.vo.Result;
@@ -79,10 +76,15 @@ public class ArticleServiceImpl implements ArticleService {
         return Result.success(list);
     }
 
+    @Autowired
+    private ThreadService threadService;
+
+
     @Override
     public Result findArticleById(Long id) {
         Article article = this.articleMapper.selectById(id);
         ArticleVo articleVo = copy(article, true, true,true,true);
+        threadService.updateArticleViewCount(articleMapper,article);
         return Result.success(articleVo);
     }
 
