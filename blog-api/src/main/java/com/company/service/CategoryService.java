@@ -1,6 +1,7 @@
 package com.company.service;
 
 import com.company.vo.CategoryVo;
+import com.company.vo.Result;
 
 import java.util.List;
 
@@ -15,4 +16,13 @@ public interface CategoryService {
      * @author wanglin
      */
     CategoryVo findCategoryById(Long categoryId);
+
+    /**
+     * 找到所有的类别
+     * @param
+     * @return
+     * @author wanglin
+     */
+    Result findAll();
+
 }

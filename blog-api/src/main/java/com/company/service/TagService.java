@@ -24,4 +24,14 @@ public interface TagService {
      * @author wanglin
      */
     Result hot(int limit);
+
+    /**
+     * 查询所有的标签
+     * @param
+     * @return
+     * @author wanglin
+     */
+    Result findAll();
+
+
 }

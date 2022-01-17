@@ -1,6 +1,6 @@
 package com.company.controller;
 
-import com.company.service.TagService;
+import com.company.service.CategoryService;
 import com.company.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,20 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @author zytwl
  */
 @RestController
-@RequestMapping("tags")
-public class TagController {
+@RequestMapping(value = "categorys")
+public class CategoryController {
     @Autowired
-    private TagService tagService;
-
-    @GetMapping("hot")
-    public Result hot(){
-        int limit = 6;
-        return tagService.hot(limit);
-    }
+    private CategoryService categoryService;
 
     @GetMapping
-    public Result findAll(){
-        return tagService.findAll();
+    public Result categories(){
+        return categoryService.findAll();
     }
-
 }

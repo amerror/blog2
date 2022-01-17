@@ -2,6 +2,7 @@ package com.company.service;
 
 import com.company.dao.pojo.SysUser;
 import com.company.vo.Result;
+import com.company.vo.UserVo;
 
 /**
  * @author zytwl
@@ -47,4 +48,12 @@ public interface SysUserService {
      * @author wanglin
      */
     void save(SysUser sysUser);
+
+    /**
+     * 1
+     * @param id
+     * @return
+     * @author wanglin
+     */
+    UserVo findUserVoById(Long id);
 }

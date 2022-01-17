@@ -2,9 +2,12 @@ package com.company.controller;
 
 import com.company.service.ArticleService;
 import com.company.vo.Result;
+import com.company.vo.params.ArticleParam;
 import com.company.vo.params.PageParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.ResultSet;
 
 /**
  * @author zytwl
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("articles")
 public class ArticleController {
+    //8628d1f407f72e10ac947a032fe5ad29
     @Autowired
     private ArticleService articleService;
     /**
@@ -56,6 +60,11 @@ public class ArticleController {
     @PostMapping("view/{id}")
     public Result findArticleById(@PathVariable("id") Long id){
         return articleService.findArticleById(id);
+    }
+
+    @PostMapping("publish")
+    public Result publish(@RequestBody ArticleParam articleParam){
+        return articleService.publish(articleParam);
     }
 
 }

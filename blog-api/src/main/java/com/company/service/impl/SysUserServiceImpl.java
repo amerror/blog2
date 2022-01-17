@@ -8,7 +8,9 @@ import com.company.service.SysUserService;
 import com.company.vo.ErrorCode;
 import com.company.vo.LoginUserVo;
 import com.company.vo.Result;
+import com.company.vo.UserVo;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,17 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public SysUser findUserById(Long id) {
         return sysUserMapper.selectById(id);
+    }
+    @Override
+    public UserVo findUserVoById(Long id) {
+        SysUser sysUser = sysUserMapper.selectById(id);
+        if(sysUser == null){
+            sysUser = new SysUser();
+            sysUser.setNickname("王琳");
+        }
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(sysUser,userVo);
+        return userVo;
     }
 
     @Override
@@ -65,4 +78,6 @@ public class SysUserServiceImpl implements SysUserService {
     public void save(SysUser sysUser) {
         this.sysUserMapper.insert(sysUser);
     }
+
+
 }

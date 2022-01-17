@@ -1,6 +1,7 @@
 package com.company.service;
 
 import com.company.vo.Result;
+import com.company.vo.params.ArticleParam;
 import com.company.vo.params.PageParams;
 import org.springframework.stereotype.Service;
 
@@ -48,4 +49,11 @@ public interface ArticleService {
      * @author wanglin
      */
     Result findArticleById(Long id);
+
+    /**
+     * 提交文章
+     * @param articleParam
+     * @return
+     */
+    Result publish(ArticleParam articleParam);
 }
